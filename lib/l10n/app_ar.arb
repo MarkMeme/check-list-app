@@ -1,0 +1,29 @@
+{
+"toDoList" : "ورايا ايه ؟",
+"done" : "تمت",
+"addNewTask" : "إضافة مهمة جديدة",
+"enterYourTask" : "اكتب المهمة",
+"selectDate" : "اختار الوقت",
+"description" : "التفاصيل",
+"enterTheDescription" : "اكتب التفاصيل",
+"settings" : "الاعدادات" ,
+"language" : "اللغة" ,
+"english" : "اللغة الانجليزية" ,
+"arabic" : "اللغة العربية" ,
+"theme" : "النمط" ,
+"light" : "مضيء" ,
+"dark" : "مظلم" ,
+"editDescription" : "تعديل الوصف" ,
+"theTitle" : "العنوان" ,
+"taskTask" : "تعديل المهمة" ,
+"saveChanges" : "احفظ التغييرات",
+"tasksList" : "قائمة المهام",
+"taskDetails" : "تفاصيل المهمة",
+"add" : "إضافة",
+"edit" : "تعديل",
+"pleaseEnterTitle" : "برجاء ادخال اسم المهمة",
+"pleaseEnterdes" : "برجاء ادخال التفاصيل",
+"delete" : "مسح"
+
+
+}

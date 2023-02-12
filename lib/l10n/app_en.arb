@@ -1,0 +1,28 @@
+{
+"toDoList" : "What i have ?",
+"done" : "Done !",
+"addNewTask" : "Add New Task",
+"enterYourTask" : "Enter Your Task",
+"selectDate" : "Select Date",
+"description" : "The Description",
+"enterTheDescription" : "Enter The Description",
+"settings" : "Settings" ,
+"language" : "Language" ,
+"english" : "English" ,
+"arabic" : "Arabic" ,
+"theme" : "Theme" ,
+"light" : "Light" ,
+"dark" : "Dark" ,
+"editDescription" : "Edit Description" ,
+"theTitle" : "The Title" ,
+"taskTask" : "Edit task" ,
+"saveChanges" : "Save Changes",
+"tasksList" : "Tasks List",
+"taskDetails" : "Task Details",
+"add" : "Add",
+"edit" : "Edit",
+"pleaseEnterTitle" : "Please Enter task title",
+"pleaseEnterdes" : "Please Enter task description",
+"delete" : "Delete"
+
+}
