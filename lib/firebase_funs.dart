@@ -1,23 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+
 import 'model/firebase_task.dart';
 
-CollectionReference<Task> getTaskClollection(){
-  return FirebaseFirestore.instance.collection('task')
-      .withConverter(fromFirestore: ((snapshot, options) => Task.fromJson(snapshot.data()!) ),
-      toFirestore: (value, options) => value.toJson(),);
-}
- addTaskFirebase(Task task){
-  var collection = getTaskClollection();
-  var docref = collection.doc();
-  task.id = docref.id ;
-  return docref.set(task);
+CollectionReference<Task> getTaskCollection() {
+  return FirebaseFirestore.instance.collection('task').withConverter(
+        fromFirestore: ((snapshot, options) => Task.fromJson(snapshot.data()!)),
+        toFirestore: (value, options) => value.toJson(),
+      );
 }
 
-Future<void> deleteTaskFirebase(Task task){
-  return getTaskClollection().doc(task.id).delete();
+addTaskFirebase(Task task) {
+  var collection = getTaskCollection();
+  var docRef = collection.doc();
+  task.id = docRef.id;
+  return docRef.set(task);
 }
 
-Future<void> updateTaskFirebase(Task task){
-  return getTaskClollection().doc(task.id).update(
-    task.toJson());
+Future<void> deleteTaskFirebase(Task task) {
+  return getTaskCollection().doc(task.id).delete();
+}
+
+Future<void> updateTaskFirebase(Task task) {
+  return getTaskCollection().doc(task.id).update(task.toJson());
+}
+
+Future<void> updateTaskIsDoneFirebase(Task task) {
+  return getTaskCollection().doc(task.id).update(task.toJson());
 }

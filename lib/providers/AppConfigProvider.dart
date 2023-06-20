@@ -1,43 +1,43 @@
-import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
+
 import '../firebase_funs.dart';
 import '../model/firebase_task.dart';
-class AppConfigProvider extends ChangeNotifier{
+
+class AppConfigProvider extends ChangeNotifier {
   String appLanguage = 'en';
   ThemeMode appTheme = ThemeMode.light;
 
-  bool isNewDone = false ;
-  void changeLanguage(String newLanguage){
-    if(newLanguage == appLanguage){
+  bool isNewDone = false;
+
+  void changeLanguage(String newLanguage) {
+    if (newLanguage == appLanguage) {
       return;
-    }
-    else{
-      appLanguage = newLanguage ;
-    }
-    notifyListeners();
-  }
-
-  changeIsDone(bool isDone){
-    if (isDone == isNewDone){
-      return ;
-    }
-    else {
-      isNewDone = isDone ;
+    } else {
+      appLanguage = newLanguage;
     }
     notifyListeners();
   }
 
-  void changeTheme(ThemeMode newTheme){
-    if(newTheme == appTheme){
+  changeIsDone(bool isDone) {
+    if (isDone == isNewDone) {
       return;
-    }
-    else{
-      appTheme = newTheme ;
+    } else {
+      isNewDone = isDone;
     }
     notifyListeners();
   }
 
-  void editTaskInFirebase(Task task){
+  void changeTheme(ThemeMode newTheme) {
+    if (newTheme == appTheme) {
+      return;
+    } else {
+      appTheme = newTheme;
+    }
+    notifyListeners();
+  }
+
+  void editTaskInFirebase(Task task) {
     updateTaskFirebase(task);
     notifyListeners();
   }
@@ -45,29 +45,23 @@ class AppConfigProvider extends ChangeNotifier{
   static List<Task> taskList = [];
   DateTime selectedDate = DateTime.now();
 
-  addTaskFromFirebase() async{
-    QuerySnapshot<Task> querySnapshot = await getTaskClollection().get();
+  addTaskFromFirebase() async {
+    QuerySnapshot<Task> querySnapshot = await getTaskCollection().get();
     taskList = querySnapshot.docs.map((doc) {
       return doc.data();
     }).toList();
-
 
     /// each task in its date
 
     taskList = taskList.where((task) {
       DateTime dateTime = DateTime.fromMillisecondsSinceEpoch(task.date);
-      if(selectedDate.month == dateTime.month
-          && selectedDate.year == dateTime.year
-          && selectedDate.day == dateTime.day
-      ){
-        return true ;
+      if (selectedDate.month == dateTime.month &&
+          selectedDate.year == dateTime.year &&
+          selectedDate.day == dateTime.day) {
+        return true;
       }
-      return false ;
+      return false;
     }).toList();
     notifyListeners();
-
   }
-
-
-
-  }
+}

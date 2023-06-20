@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/task_details/tasks_tab.dart';
 import 'package:to_do_app/settings_details/settings_tab.dart';
 import 'package:to_do_app/task_details/add_task_bottom_sheet.dart';
+import 'package:to_do_app/task_details/tasks_tab.dart';
 import 'package:to_do_app/theme_data.dart';
 
 import '../providers/AppConfigProvider.dart';
@@ -26,11 +26,11 @@ class _HomePageState extends State<HomePage> {
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
         centerTitle: true,
-          shape: const RoundedRectangleBorder(
-              borderRadius: BorderRadius.only(
-                  bottomLeft: Radius.circular(35),
-                  bottomRight: Radius.circular(35))),
-      title: Text(
+        shape: const RoundedRectangleBorder(
+            borderRadius: BorderRadius.only(
+                bottomLeft: Radius.circular(35),
+                bottomRight: Radius.circular(35))),
+        title: Text(
           AppLocalizations.of(context)!.toDoList,
           style: Theme.of(context).textTheme.headline1,
         ),
