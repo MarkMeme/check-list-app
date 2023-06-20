@@ -6,14 +6,15 @@ import 'package:provider/provider.dart';
 import 'package:to_do_app/providers/AppConfigProvider.dart';
 import 'package:to_do_app/task_details/edit_task.dart';
 import 'package:to_do_app/theme_data.dart';
+
 import 'home/home_page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
   await FirebaseFirestore.instance.disableNetwork();
   runApp(ChangeNotifierProvider(
       create: (BuildContext context) => AppConfigProvider(),
-
       child: const MyApp()));
 }
 
