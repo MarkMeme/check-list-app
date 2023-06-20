@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import '../theme_data.dart';
-import '../providers/AppConfigProvider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/AppConfigProvider.dart';
+import '../theme_data.dart';
 
 class LanguageBottomSheet extends StatefulWidget {
-
   @override
   State<LanguageBottomSheet> createState() => _LanguageBottomSheetState();
 }
@@ -21,54 +21,58 @@ class _LanguageBottomSheetState extends State<LanguageBottomSheet> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           InkWell(
-            onTap: (){
+            onTap: () {
               provider.changeLanguage('en');
             },
-            child: provider.appLanguage=='en'?
-                getSelectedWidget(AppLocalizations.of(context)!.english)
+            child: provider.appLanguage == 'en'
+                ? getSelectedWidget(AppLocalizations.of(context)!.english)
                 : getUnselectedWidget(AppLocalizations.of(context)!.english),
           ),
           SizedBox(height: 20),
           InkWell(
-            onTap: (){
+            onTap: () {
               provider.changeLanguage('ar');
             },
-            child: provider.appLanguage=='ar'?
-            getSelectedWidget(AppLocalizations.of(context)!.arabic)
+            child: provider.appLanguage == 'ar'
+                ? getSelectedWidget(AppLocalizations.of(context)!.arabic)
                 : getUnselectedWidget(AppLocalizations.of(context)!.arabic),
           )
         ],
       ),
     );
   }
-  Widget getSelectedWidget (String text){
+
+  Widget getSelectedWidget(String text) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(text,
+        Text(
+          text,
           style: TextStyle(
               color: Theme.of(context).primaryColor,
               fontSize: 23,
-              fontWeight: FontWeight.bold
-          )
-          ,),
+              fontWeight: FontWeight.bold),
+        ),
         Icon(
-          Icons.check_box,size: 25,color: Theme.of(context).primaryColor,
+          Icons.check_box,
+          size: 25,
+          color: Theme.of(context).primaryColor,
         )
       ],
     );
   }
-  Widget getUnselectedWidget (String text){
+
+  Widget getUnselectedWidget(String text) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        Text(text,
+        Text(
+          text,
           style: TextStyle(
               color: MyThemeData.blackColor,
               fontSize: 23,
-              fontWeight: FontWeight.bold
-          )
-          ,),
+              fontWeight: FontWeight.bold),
+        ),
       ],
     );
   }

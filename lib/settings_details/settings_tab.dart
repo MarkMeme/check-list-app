@@ -23,8 +23,10 @@ class _SettingsTabState extends State<SettingsTab> {
           children: [
             const SizedBox(height: 15),
             Center(
-              child: Text(AppLocalizations.of(context)!.settings,
-                  style: Theme.of(context).textTheme.headline3,),
+              child: Text(
+                AppLocalizations.of(context)!.settings,
+                style: Theme.of(context).textTheme.headline3,
+              ),
             ),
             const SizedBox(height: 25),
             Text(
@@ -124,10 +126,7 @@ class _SettingsTabState extends State<SettingsTab> {
       builder: (context) {
         return ThemeBottomSheet();
       },
-      shape: Border.all(
-          width: 5,
-          color: Theme.of(context).primaryColor
-      ),
+      shape: Border.all(width: 5, color: Theme.of(context).primaryColor),
     );
   }
 }

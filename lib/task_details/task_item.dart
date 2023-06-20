@@ -11,17 +11,16 @@ import 'edit_task.dart';
 
 class TaskItem extends StatefulWidget {
   Task task;
-  TaskItem({required this.task});
+
+  TaskItem({super.key, required this.task});
 
   @override
   State<TaskItem> createState() => _TaskItemState();
 }
 
 class _TaskItemState extends State<TaskItem> {
-  static bool isDone = false ;
   @override
   Widget build(BuildContext context) {
-
     var provider = Provider.of<AppConfigProvider>(context);
     return Container(
         margin: EdgeInsets.all(12),
@@ -47,7 +46,7 @@ class _TaskItemState extends State<TaskItem> {
                 foregroundColor: Colors.white,
                 icon: Icons.delete,
                 label: AppLocalizations.of(context)!.delete,
-                borderRadius: BorderRadius.only(
+                borderRadius: const BorderRadius.only(
                     bottomLeft: Radius.circular(30),
                     topLeft: Radius.circular(30)),
               ),
@@ -56,7 +55,8 @@ class _TaskItemState extends State<TaskItem> {
 
           child: Container(
               decoration: BoxDecoration(
-                  color: Theme.of(context).textTheme.headline1!.color, borderRadius: BorderRadius.circular(30)),
+                  color: Theme.of(context).textTheme.headline1!.color,
+                  borderRadius: BorderRadius.circular(30)),
               padding: EdgeInsets.all(12),
               //margin: EdgeInsets.all(12),
               child: Row(
@@ -66,29 +66,26 @@ class _TaskItemState extends State<TaskItem> {
                     height: 80,
                     width: 6,
                     decoration: BoxDecoration(
-                        color: isDone == true
-                            ?  MyThemeData.greenColor
+                        color: widget.task.isDone == true
+                            ? MyThemeData.greenColor
                             : MyThemeData.primaryLight,
                         borderRadius: BorderRadius.circular(30)),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 5,
                   ),
                   Expanded(
                       child: InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, EditTask.routeName,
-                        arguments: TaskDetailsArgs(task: widget.task)
-                      );
+                          arguments: TaskDetailsArgs(task: widget.task));
                     },
                     child: Column(
                       children: [
-                        Text(
-                          widget.task.title,
-                          style: isDone == false
-                          ? Theme.of(context).textTheme.headline2
-                              : Theme.of(context).textTheme.subtitle2
-                        ),
+                        Text(widget.task.title,
+                            style: widget.task.isDone == false
+                                ? Theme.of(context).textTheme.headline2
+                                : Theme.of(context).textTheme.subtitle2),
                         Text(
                           widget.task.description,
                           style: Theme.of(context).textTheme.headline3,
@@ -98,40 +95,41 @@ class _TaskItemState extends State<TaskItem> {
                   )),
                   InkWell(
                     onTap: () {
-                      isDone = true;
-                      setState(() {
-                      });
+                      doneTest(widget.task);
+
+                      /// TODO
+                      //widget.task.isDone = true;
                     },
                     child: Container(
-                      padding:
-                          const EdgeInsets.symmetric(vertical: 6, horizontal: 18),
-                      decoration: BoxDecoration(
-                          color: isDone == true
-                              ?  Colors.transparent
-                              : MyThemeData.primaryLight,
-                          borderRadius: BorderRadius.circular(30)),
-                      child: isDone == false
-                      ? const Icon(
-                        Icons.check_rounded,
-                        size: 35,
-                        color: Colors.white
-                      )
-                          : Text(AppLocalizations.of(context)!.done,
-                        style: Theme.of(context).textTheme.subtitle2,
-
-                      )
-                    ),
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 6, horizontal: 18),
+                        decoration: BoxDecoration(
+                            color: widget.task.isDone == true
+                                ? Colors.transparent
+                                : MyThemeData.primaryLight,
+                            borderRadius: BorderRadius.circular(30)),
+                        child: widget.task.isDone == false
+                            ? const Icon(Icons.check_rounded,
+                                size: 35, color: Colors.white)
+                            : Text(
+                                AppLocalizations.of(context)!.done,
+                                style: Theme.of(context).textTheme.subtitle2,
+                              )),
                   )
                 ],
               )),
         ));
   }
-  doneTest(){
-    isDone = true ;
-    print(isDone);
+
+  doneTest(Task task) {
+    task.isDone = true;
+    updateTaskIsDoneFirebase(task);
+    setState(() {});
   }
 }
+
 class TaskDetailsArgs {
   Task task;
-  TaskDetailsArgs({required this.task });
+
+  TaskDetailsArgs({required this.task});
 }

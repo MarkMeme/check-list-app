@@ -24,15 +24,15 @@ class MyThemeData {
       subtitle2: TextStyle(
           color: greenColor, fontWeight: FontWeight.bold, fontSize: 26),
       subtitle1:
-      TextStyle(color: redColor, fontWeight: FontWeight.bold, fontSize: 22),
+          TextStyle(color: redColor, fontWeight: FontWeight.bold, fontSize: 22),
       headline3: TextStyle(
           color: blackColor, fontWeight: FontWeight.bold, fontSize: 22),
       headline4: TextStyle(
           color: greyLight, fontWeight: FontWeight.bold, fontSize: 17),
       headline5: TextStyle(
           color: blackColor, fontWeight: FontWeight.bold, fontSize: 20),
-      headline6: TextStyle(
-          color: redColor, fontWeight: FontWeight.bold, fontSize: 20),
+      headline6:
+          TextStyle(color: redColor, fontWeight: FontWeight.bold, fontSize: 20),
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
         elevation: 0,
@@ -43,8 +43,8 @@ class MyThemeData {
   static ThemeData darkTheme = ThemeData(
       primaryColor: primaryLight,
       appBarTheme: AppBarTheme(
-          backgroundColor: primaryLight,
-          actionsIconTheme: IconThemeData(color: blackColor),
+        backgroundColor: primaryLight,
+        actionsIconTheme: IconThemeData(color: blackColor),
         iconTheme: IconThemeData(color: blackColor),
       ),
       scaffoldBackgroundColor: backGroundDark,
@@ -61,8 +61,11 @@ class MyThemeData {
             color: whiteColor, fontWeight: FontWeight.bold, fontSize: 18),
         headline4: TextStyle(
             color: greyLight, fontWeight: FontWeight.bold, fontSize: 17),
-        headline5: TextStyle( // data select time
-            color: whiteColor, fontWeight: FontWeight.bold, fontSize: 20),
+        headline5: TextStyle(
+            // data select time
+            color: whiteColor,
+            fontWeight: FontWeight.bold,
+            fontSize: 20),
         headline6: TextStyle(
             color: redColor, fontWeight: FontWeight.bold, fontSize: 20),
       ),

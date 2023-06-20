@@ -1,11 +1,8 @@
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
-import 'package:to_do_app/home/home_page.dart';
 import 'package:to_do_app/task_details/task_item.dart';
 
-import '../firebase_funs.dart';
 import '../model/firebase_task.dart';
 import '../providers/AppConfigProvider.dart';
 import '../theme_data.dart';
@@ -23,15 +20,14 @@ class _EditTaskState extends State<EditTask> {
   var descriptionController = TextEditingController();
 
   var keyForm = GlobalKey<FormState>();
-  late Task task ;
-
+  late Task task;
 
   String title = '';
   String description = '';
   DateTime selectedDate = DateTime.now();
-@override
-  void initState() {
 
+  @override
+  void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       var args = ModalRoute.of(context)?.settings.arguments as TaskDetailsArgs;
@@ -39,18 +35,16 @@ class _EditTaskState extends State<EditTask> {
       String description = args.task.description;
       int date = selectedDate.millisecondsSinceEpoch;
       date = args.task.date;
-      task = args.task ;
+      task = args.task;
       selectedDate = DateTime.fromMillisecondsSinceEpoch(date);
-      titleController.text = task.title ;
-      descriptionController.text = task.description ;
-      setState(() {
-
-      });
+      titleController.text = task.title;
+      descriptionController.text = task.description;
+      setState(() {});
     });
   }
+
   @override
   Widget build(BuildContext context) {
-
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -73,7 +67,6 @@ class _EditTaskState extends State<EditTask> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.taskTask,
-
                       style: Theme.of(context).textTheme.headline3,
                       textAlign: TextAlign.center,
                     ),
@@ -101,22 +94,21 @@ class _EditTaskState extends State<EditTask> {
                                */
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
-                                  return 'error' ;
-                                 //   AppLocalizations.of(context)!.pleaseEnterTitle;
-                                }else {
+                                  return 'error';
+                                  //   AppLocalizations.of(context)!.pleaseEnterTitle;
+                                } else {
                                   return null;
                                 }
                               },
                               decoration: InputDecoration(
-                                  border: const UnderlineInputBorder(
-                                      ),
-                                  hintText: AppLocalizations.of(context)!.theTitle,
-                                 hintStyle: Theme.of(context).textTheme.headline6,
-                                 // prefixText: title,
-                                  //prefixStyle: Theme.of(context).textTheme.headline6
+                                border: const UnderlineInputBorder(),
+                                hintText:
+                                    AppLocalizations.of(context)!.theTitle,
+                                hintStyle:
+                                    Theme.of(context).textTheme.headline6,
+                                // prefixText: title,
+                                //prefixStyle: Theme.of(context).textTheme.headline6
                               ),
-
-
                             ),
                             /*const Divider(
                               thickness: 2,
@@ -126,7 +118,7 @@ class _EditTaskState extends State<EditTask> {
                               height: 7,
                             ),
                             TextFormField(
-                              controller: descriptionController ,
+                              controller: descriptionController,
                               /*initialValue: description,
                               onChanged: (text) {
                                 description = text;
@@ -136,20 +128,24 @@ class _EditTaskState extends State<EditTask> {
                               decoration: InputDecoration(
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                    color: Provider.of<AppConfigProvider>(context).appTheme == ThemeMode.light
-                                        ? MyThemeData.blackColor
-                                        : MyThemeData.whiteColor,
+                                    color:
+                                        Provider.of<AppConfigProvider>(context)
+                                                    .appTheme ==
+                                                ThemeMode.light
+                                            ? MyThemeData.blackColor
+                                            : MyThemeData.whiteColor,
                                   )),
-                                  hintText: AppLocalizations.of(context)!.description,
-                                  hintStyle: Theme.of(context).textTheme.headline6),
+                                  hintText:
+                                      AppLocalizations.of(context)!.description,
+                                  hintStyle:
+                                      Theme.of(context).textTheme.headline6),
                               maxLines: 4,
                               minLines: 2,
                               validator: (text) {
                                 if (text == null || text.isEmpty) {
                                   return AppLocalizations.of(context)!
                                       .enterTheDescription;
-                                }
-                                else {
+                                } else {
                                   return null;
                                 }
                               },
@@ -184,7 +180,9 @@ class _EditTaskState extends State<EditTask> {
                         child: ElevatedButton(
                           onPressed: () {
                             editTask(task);
-                            Provider.of<AppConfigProvider>(context,listen: false).editTaskInFirebase(task);
+                            Provider.of<AppConfigProvider>(context,
+                                    listen: false)
+                                .editTaskInFirebase(task);
                           },
                           style: ButtonStyle(
                               backgroundColor: MaterialStatePropertyAll(
@@ -209,7 +207,6 @@ class _EditTaskState extends State<EditTask> {
         firstDate: DateTime.now(),
         lastDate: DateTime.now().add(const Duration(days: 365)));
     if (chosenDate != null) {
-
       setState(() {
         selectedDate = chosenDate;
       });
@@ -218,15 +215,12 @@ class _EditTaskState extends State<EditTask> {
 
   void editTask(Task task) {
     if (keyForm.currentState?.validate() == true) {
-      task.title = titleController.text ;
-      task.description = descriptionController.text ;
+      task.title = titleController.text;
+      task.description = descriptionController.text;
       task.date = selectedDate.millisecondsSinceEpoch;
       print(task.title);
-      setState(() {
-
-      });
+      setState(() {});
       Navigator.pop(context);
-
     }
   }
 }

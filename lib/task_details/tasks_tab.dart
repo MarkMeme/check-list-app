@@ -1,9 +1,8 @@
 import 'package:calendar_timeline/calendar_timeline.dart';
 import 'package:flutter/material.dart';
-
 import 'package:provider/provider.dart';
 import 'package:to_do_app/task_details/task_item.dart';
-import '../model/firebase_task.dart';
+
 import '../providers/AppConfigProvider.dart';
 import '../theme_data.dart';
 
@@ -21,6 +20,16 @@ class _TasksTabState extends State<TasksTab> {
     listProvider.addTaskFromFirebase();
     return Column(
       children: [
+        /*EasyDateTimeLine(
+
+            onDateChange: (date) {
+              listProvider.selectedDate = date;
+            },
+            activeColor: MyThemeData.primaryLight,
+            initialDate: listProvider.selectedDate),
+        SizedBox(height: 15),
+
+         */
         CalendarTimeline(
           //shrink: true,
           initialDate: listProvider.selectedDate,
