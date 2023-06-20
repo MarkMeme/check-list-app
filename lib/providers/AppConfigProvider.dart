@@ -46,7 +46,7 @@ class AppConfigProvider extends ChangeNotifier{
   DateTime selectedDate = DateTime.now();
 
   addTaskFromFirebase() async{
-    QuerySnapshot<Task> querySnapshot = await getTaskClollection().get();
+    QuerySnapshot<Task> querySnapshot = await getTaskCollection().get();
     taskList = querySnapshot.docs.map((doc) {
       return doc.data();
     }).toList();
