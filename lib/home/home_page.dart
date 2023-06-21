@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 import 'package:to_do_app/settings_details/settings_tab.dart';
@@ -25,6 +26,14 @@ class _HomePageState extends State<HomePage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
+        systemOverlayStyle: const SystemUiOverlayStyle(
+          statusBarColor: Colors.transparent,
+          // <-- SEE HERE
+          statusBarIconBrightness: Brightness.dark,
+          //<-- For Android SEE HERE (dark icons)
+          statusBarBrightness:
+              Brightness.light, //<-- For iOS SEE HERE (dark icons)
+        ),
         centerTitle: true,
         shape: const RoundedRectangleBorder(
             borderRadius: BorderRadius.only(
@@ -91,7 +100,7 @@ class _HomePageState extends State<HomePage> {
   void addTaskBottomSheet() {
     showModalBottomSheet(
       useSafeArea: true,
-      isScrollControlled: false,
+      isScrollControlled: true,
       enableDrag: false,
       context: context,
       builder: (context) => AddTaskBottomSheet(),

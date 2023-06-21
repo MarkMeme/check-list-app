@@ -45,8 +45,14 @@ class _EditTaskState extends State<EditTask> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<AppConfigProvider>(context);
     return Scaffold(
         appBar: AppBar(
+          centerTitle: true,
+          shape: const RoundedRectangleBorder(
+              borderRadius: BorderRadius.only(
+                  bottomLeft: Radius.circular(35),
+                  bottomRight: Radius.circular(35))),
           title: Text(
             AppLocalizations.of(context)!.toDoList,
             style: Theme.of(context).textTheme.headline1,
@@ -55,7 +61,7 @@ class _EditTaskState extends State<EditTask> {
         body: Container(
           width: double.infinity,
           height: double.infinity,
-          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 23),
+          padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 23),
           color: Theme.of(context).textTheme.headline1?.color,
           margin:
               const EdgeInsets.only(top: 20, bottom: 20, left: 30, right: 30),
@@ -67,15 +73,16 @@ class _EditTaskState extends State<EditTask> {
                   children: [
                     Text(
                       AppLocalizations.of(context)!.taskTask,
-                      style: Theme.of(context).textTheme.headline3,
+                      style: Theme.of(context).textTheme.headline5,
                       textAlign: TextAlign.center,
                     ),
                     const SizedBox(
                       height: 12,
                     ),
                     Text(
-                      AppLocalizations.of(context)!.taskDetails,
-                      style: Theme.of(context).textTheme.headline5,
+                      "${AppLocalizations.of(context)!.taskDetails} :",
+                      style:Theme.of(context).textTheme.headline3
+                      ,
                     ),
                     const SizedBox(
                       height: 7,
@@ -101,7 +108,12 @@ class _EditTaskState extends State<EditTask> {
                                 }
                               },
                               decoration: InputDecoration(
-                                border: const UnderlineInputBorder(),
+                                border: UnderlineInputBorder(
+                                    borderSide: BorderSide(
+                                      color: provider.appTheme == ThemeMode.light
+                                          ? MyThemeData.blackColor
+                                          : MyThemeData.whiteColor,
+                                    )),
                                 hintText:
                                     AppLocalizations.of(context)!.theTitle,
                                 hintStyle:
@@ -128,13 +140,10 @@ class _EditTaskState extends State<EditTask> {
                               decoration: InputDecoration(
                                   border: UnderlineInputBorder(
                                       borderSide: BorderSide(
-                                    color:
-                                        Provider.of<AppConfigProvider>(context)
-                                                    .appTheme ==
-                                                ThemeMode.light
+                                        color: provider.appTheme == ThemeMode.light
                                             ? MyThemeData.blackColor
                                             : MyThemeData.whiteColor,
-                                  )),
+                                      )),
                                   hintText:
                                       AppLocalizations.of(context)!.description,
                                   hintStyle:
@@ -160,8 +169,8 @@ class _EditTaskState extends State<EditTask> {
                       height: 35,
                     ),
                     Text(
-                      AppLocalizations.of(context)!.selectDate,
-                      style: Theme.of(context).textTheme.headline5,
+                      "${AppLocalizations.of(context)!.selectDate} :",
+                      style: Theme.of(context).textTheme.headline3,
                     ),
                     const SizedBox(height: 18),
                     InkWell(
