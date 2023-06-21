@@ -23,15 +23,13 @@ class _TaskItemState extends State<TaskItem> {
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
     return Container(
-        margin: EdgeInsets.all(12),
+        margin: const EdgeInsets.all(12),
         child: Slidable(
           // The start action pane is the one at the left or the top side.
           startActionPane: ActionPane(
             // A motion is a widget used to control how the pane animates.
             motion: const StretchMotion(),
-
             extentRatio: 0.35,
-
             // A pane can dismiss the Slidable.
             //openThreshold: 0.7,
             // All actions are defined in the children parameter.
@@ -57,13 +55,13 @@ class _TaskItemState extends State<TaskItem> {
               decoration: BoxDecoration(
                   color: Theme.of(context).textTheme.headline1!.color,
                   borderRadius: BorderRadius.circular(30)),
-              padding: EdgeInsets.all(12),
+              padding: const EdgeInsets.all(12),
               //margin: EdgeInsets.all(12),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Container(
-                    height: 80,
+                    height: 55,
                     width: 6,
                     decoration: BoxDecoration(
                         color: widget.task.isDone == true
@@ -71,50 +69,54 @@ class _TaskItemState extends State<TaskItem> {
                             : MyThemeData.primaryLight,
                         borderRadius: BorderRadius.circular(30)),
                   ),
-                  const SizedBox(
-                    width: 5,
-                  ),
                   Expanded(
                       child: InkWell(
                     onTap: () {
                       Navigator.pushNamed(context, EditTask.routeName,
                           arguments: TaskDetailsArgs(task: widget.task));
                     },
-                    child: Column(
-                      children: [
-                        Text(widget.task.title,
-                            style: widget.task.isDone == false
-                                ? Theme.of(context).textTheme.headline2
-                                : Theme.of(context).textTheme.subtitle2),
-                        Text(
-                          widget.task.description,
-                          style: Theme.of(context).textTheme.headline3,
-                        )
-                      ],
+                    child: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      child: Column(
+                        children: [
+                          Text(widget.task.title,
+                              style: widget.task.isDone == false
+                                  ? Theme.of(context).textTheme.headline2
+                                  : Theme.of(context).textTheme.subtitle2),
+                          Text(
+                            widget.task.description,
+                            style: Theme.of(context).textTheme.headline3,
+                          )
+                        ],
+                      ),
                     ),
                   )),
-                  InkWell(
-                    onTap: () {
-                      doneTest(widget.task);
+                  SizedBox(
+                    //height: 30,
+                    width: 115,
+                    child: InkWell(
+                      onTap: () {
+                        doneTest(widget.task);
 
-                      /// TODO
-                      //widget.task.isDone = true;
-                    },
-                    child: Container(
-                        padding: const EdgeInsets.symmetric(
-                            vertical: 6, horizontal: 18),
-                        decoration: BoxDecoration(
-                            color: widget.task.isDone == true
-                                ? Colors.transparent
-                                : MyThemeData.primaryLight,
-                            borderRadius: BorderRadius.circular(30)),
-                        child: widget.task.isDone == false
-                            ? const Icon(Icons.check_rounded,
-                                size: 35, color: Colors.white)
-                            : Text(
-                                AppLocalizations.of(context)!.done,
-                                style: Theme.of(context).textTheme.subtitle2,
-                              )),
+                        /// TODO
+                        //widget.task.isDone = true;
+                      },
+                      child: Container(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 6, horizontal: 18),
+                          decoration: BoxDecoration(
+                              color: widget.task.isDone == true
+                                  ? Colors.transparent
+                                  : MyThemeData.primaryLight,
+                              borderRadius: BorderRadius.circular(30)),
+                          child: widget.task.isDone == false
+                              ? const Icon(Icons.check_rounded,
+                                  size: 35, color: Colors.white)
+                              : Text(
+                                  AppLocalizations.of(context)!.done,
+                                  style: Theme.of(context).textTheme.subtitle2,
+                                )),
+                    ),
                   )
                 ],
               )),

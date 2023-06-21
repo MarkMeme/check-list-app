@@ -24,8 +24,10 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<AppConfigProvider>(context);
-    return Wrap(children: [
-      SingleChildScrollView(
+    return Container(
+        padding: EdgeInsets.only(
+        bottom: MediaQuery.of(context).viewInsets.bottom,),
+      child: SingleChildScrollView(
           reverse: true,
           child: Container(
             foregroundDecoration: const BoxDecoration(),
@@ -45,7 +47,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   height: 12,
                 ),
                 Text(
-                  AppLocalizations.of(context)!.taskDetails,
+                  "${AppLocalizations.of(context)!.taskDetails} :",
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 const SizedBox(
@@ -68,8 +70,13 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                           },
                           decoration: InputDecoration(
                               focusedBorder: InputBorder.none,
-                              border: const UnderlineInputBorder(
-                                  borderRadius: BorderRadius.zero),
+
+                              border: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: provider.appTheme == ThemeMode.light
+                                        ? MyThemeData.blackColor
+                                        : MyThemeData.whiteColor,
+                                  )),
                               hintText:
                                   AppLocalizations.of(context)!.enterYourTask,
                               hintStyle: Theme.of(context).textTheme.headline4),
@@ -117,7 +124,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
                   height: 18,
                 ),
                 Text(
-                  AppLocalizations.of(context)!.selectDate,
+                  "${AppLocalizations.of(context)!.selectDate} :",
                   style: Theme.of(context).textTheme.headline5,
                 ),
                 const SizedBox(height: 18),
@@ -150,7 +157,7 @@ class _AddTaskBottomSheetState extends State<AddTaskBottomSheet> {
               ],
             ),
           )),
-    ]);
+    );
   }
 
   void showCalendar() async {

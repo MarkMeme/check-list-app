@@ -1,21 +1,34 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../firebase_funs.dart';
 import '../model/firebase_task.dart';
 
 class AppConfigProvider extends ChangeNotifier {
   String appLanguage = 'en';
-  ThemeMode appTheme = ThemeMode.light;
-
+  ThemeMode appTheme = ThemeMode.system;
   bool isNewDone = false;
 
-  void changeLanguage(String newLanguage) {
+  Future<void> changeTheme(ThemeMode newTheme) async {
+    if (newTheme == appTheme) {
+      return;
+    } else {
+      appTheme = newTheme;
+    }
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('theme', appTheme == ThemeMode.dark ?  'dark' : "light");
+    notifyListeners();
+  }
+
+  Future<void> changeLanguage(String newLanguage) async {
     if (newLanguage == appLanguage) {
       return;
     } else {
       appLanguage = newLanguage;
     }
+    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    prefs.setString('lang', appLanguage);
     notifyListeners();
   }
 
@@ -24,15 +37,6 @@ class AppConfigProvider extends ChangeNotifier {
       return;
     } else {
       isNewDone = isDone;
-    }
-    notifyListeners();
-  }
-
-  void changeTheme(ThemeMode newTheme) {
-    if (newTheme == appTheme) {
-      return;
-    } else {
-      appTheme = newTheme;
     }
     notifyListeners();
   }
