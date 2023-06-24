@@ -1,4 +1,4 @@
-# to_do_list_app
+# check_list_app
 
 A Flutter project to handle your tasks.
 the app is in dark and light modes with arabic anf english languages.
