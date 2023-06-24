@@ -1,16 +1,12 @@
-# to_do_list_app
+# Check List App
 
-A new Flutter project.
+A Flutter project to handle your tasks.
+the app is in dark and light modes with arabic anf english languages.
 
-## Getting Started
+Light Mode:
 
-This project is a starting point for a Flutter application.
+![check list light app](https://github.com/MarkMeme/check-list-app/assets/119113382/c3a50da4-26a3-4eff-93a3-406d0cb29cb5)
 
-A few resources to get you started if this is your first Flutter project:
+Dark Mode:
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+![check list adrk app](https://github.com/MarkMeme/check-list-app/assets/119113382/613d7cef-e19a-4cbd-8c5b-b0e6e3bb1e8f)
